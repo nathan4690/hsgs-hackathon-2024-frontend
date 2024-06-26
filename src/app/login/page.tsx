@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const Login: React.FC = () => {
   return (
-    <div className="dark bg-gray-900 text-white">
+    <div className='dark:dark'>
       <Head>
         <title>Login</title>
         <link rel="icon" href="/favicon.ico" />

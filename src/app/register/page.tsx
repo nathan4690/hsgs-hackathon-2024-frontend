@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const Register: React.FC = () => {
   return (
-    <div className="dark bg-gray-900 text-white">
+    <div className='dark:dark'>
       <Head>
         <title>Register</title>
         <link rel="icon" href="/favicon.ico" />

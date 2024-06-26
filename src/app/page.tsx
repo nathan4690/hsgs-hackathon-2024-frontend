@@ -5,7 +5,7 @@ import MainSection from './components/MainSection';
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white">
+    <div className="dark:dark bg-gray-100 dark:bg-gray-900 dark:text-white min-h-screen">
       <Head>
         <title>Next.js with Dark and Light Theme</title>
         <link rel="icon" href="/favicon.ico" />

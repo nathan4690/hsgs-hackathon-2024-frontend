@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import {Input,Card,CardBody} from "@nextui-org/react";
 import {Button, ButtonGroup} from "@nextui-org/react";
+import LoadingButton from './LoadingButton';
 
 const AuthForm: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,7 +21,7 @@ const AuthForm: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               {/* <label htmlFor="email" className="block text-gray-900 dark:text-white">Email</label> */}
-              <Input type="email" label="Email" id="email" required />
+              <Input type="text" label="Username" id="username" required />
             </div>
             <div>
                 {/* <label htmlFor="password" className="block text-gray-900 dark:text-white">Password</label> */}

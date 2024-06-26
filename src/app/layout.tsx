@@ -24,11 +24,12 @@ export default function RootLayout({
           async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
         />
+        <script src="https://www.desmos.com/api/v1.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
       </head>
       <body className={inter.className}>
         <NextUIProvider>
           
-    <div className="dark bg-gray-900 text-white">{children}</div></NextUIProvider>
+    <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">{children}</div></NextUIProvider>
       </body>
     </html>
   );

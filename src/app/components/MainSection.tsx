@@ -8,24 +8,24 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    title: 'Feature 1',
-    colorClass: 'bg-gray-800', // Dark mode color
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title: 'Personalized Question Generation',
+    colorClass: 'bg-gray-800',
+    content: 'Our AI algorithm analyzes your performance to generate customized practice questions that target your specific areas for improvement, ensuring efficient and effective study sessions.',
   },
   {
-    title: 'Feature 2',
-    colorClass: 'bg-gray-700', // Dark mode color
-    content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    title: 'Real-Time Feedback',
+    colorClass: 'bg-gray-700',
+    content: 'Receive instant feedback on your answers with detailed explanations and performance metrics, helping you understand your mistakes and learn more effectively.',
   },
   {
-    title: 'Feature 3',
-    colorClass: 'bg-gray-600', // Dark mode color
-    content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    title: 'Comprehensive Performance Analytics',
+    colorClass: 'bg-gray-600',
+    content: 'Track your progress with in-depth analytics that provide insights into your strengths, weaknesses, and overall readiness, helping you stay on track and achieve your goals.',
   },
   {
-    title: 'Feature 4',
-    colorClass: 'bg-gray-500', // Dark mode color
-    content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    title: 'Adaptive Learning Paths',
+    colorClass: 'bg-gray-500',
+    content: 'Experience a tailored learning journey with our adaptive system that adjusts the difficulty and focus of questions based on your ongoing performance, ensuring continuous improvement and optimal preparation.',
   },
 ];
 
@@ -45,8 +45,8 @@ const MainSection: React.FC = () => {
         </div>
         {/* Content */}
         <div className="relative z-20 text-white text-center mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Welcome to My Next.js App</h1>
-          <p className="text-lg sm:text-xl md:text-2xl">Build something amazing today!</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Welcome to DSAT.sigma</h1>
+          <p className="text-lg sm:text-xl md:text-2xl">The ultimate platform for Digital SAT testing</p>
         </div>
         {/* Fade-out overlay */}
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-100 dark:from-gray-900 to-transparent pointer-events-none"></div>
@@ -57,8 +57,8 @@ const MainSection: React.FC = () => {
       <section className="flex flex-col md:flex-row items-center justify-center py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Left column */}
         <div className="md:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Left Column Title</h2>
-          <p className="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla ex et gravida scelerisque.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">DSAT.sigma</h2>
+          <p className="text-lg">DSAT.sigma, the cutting-edge digital SAT testing platform that leverages artificial intelligence to create personalized practice questions tailored to your strengths and weaknesses. Our AI-driven system ensures you receive the most relevant and challenging questions to maximize your preparation. With user-friendly navigation, real-time feedback, and comprehensive performance analytics, DSAT.sigma is your ultimate partner in achieving SAT success!</p>
         </div>
         {/* Right column */}
         <div className="md:w-1/2 px-6">
@@ -70,7 +70,7 @@ const MainSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold dark:text-white mb-8 text-center">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
-              <div key={index} className={`rounded-lg shadow-lg overflow-hidden ${feature.colorClass} text-white p-6`}>
+              <div key={index} className={`rounded-lg shadow-lg overflow-hidden dark:bg-gray-800 dark:text-white p-6 bg-gray-200`}>
                 <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
                 <p>{feature.content}</p>
               </div>

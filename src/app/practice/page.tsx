@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   return (
-    <div className="dark:dark bg-gray-100 dark:bg-gray-900 text-white min-h-screen flex flex-col">
+    <div className="dark:dark bg-gray-100 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
         <Header />
       <MathCover />
       <Footer />
