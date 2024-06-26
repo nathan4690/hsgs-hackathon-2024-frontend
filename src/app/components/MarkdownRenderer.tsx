@@ -22,6 +22,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
         rehypePlugins={[rehypeKatex]}
+        className="dark:prose-dark"
       >
         {content}
       </ReactMarkdown>

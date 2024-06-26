@@ -9,10 +9,10 @@ import CountdownTimer from '@/app/components/CountdownTimer';
 const Home: React.FC = () => {
   const currentQuestion = 1;  // Example current question number
   const totalQuestions = 10;  // Example total number of questions
-  const startTime = '2024-06-26T02:25:00Z'; // Example start time
-  const endTime = '2024-06-26T02:35:00Z';
+  const startTime = '2024-06-26T04:00:00Z'; // Example start time
+  const endTime = '2024-06-26T06:00:00Z';
   return (
-    <div className="dark bg-gray-900 text-white min-h-screen flex flex-col">
+    <div className="bg-gray-100 dark:dark dark:bg-gray-900 text-white min-h-screen flex flex-col">
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />

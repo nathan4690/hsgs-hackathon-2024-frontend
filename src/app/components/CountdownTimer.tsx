@@ -33,7 +33,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ endTime }) => {
   }, [endTime]);
 
   return (
-    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white p-4 rounded-lg shadow-lg">
+    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-white text-gray-900 dark:bg-gray-900 dark:text-white p-4 rounded-lg shadow-lg">
       <p className="text-sm font-bold">{timeLeft}</p>
     </div>
   );
