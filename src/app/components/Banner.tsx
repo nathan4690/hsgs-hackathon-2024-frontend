@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import { Button } from '@nextui-org/react';
 
 interface BannerProps {
   currentQuestion: number;
@@ -40,18 +41,17 @@ const Banner: React.FC<BannerProps> = ({ currentQuestion, totalQuestions, endTim
       </div>
       <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white py-4 shadow-md">
         <div className="flex justify-between items-center px-4">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+          {/* <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
             ← Previous
-          </button>
+          </button> */}
+          <Button color="primary">← Previous</Button>
           <button className="p-2">
             <p className="text-lg font-bold mb-2">Question {currentQuestion} of {totalQuestions}</p>
             <div className="bg-gray-300 dark:bg-gray-700 w-full rounded-full h-2.5">
               <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: `${progressPercentage}%` }}></div>
             </div>
           </button>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
-            Next →
-          </button>
+          <Button color="primary">Next →</Button>
         </div>
       </div>
     </div>

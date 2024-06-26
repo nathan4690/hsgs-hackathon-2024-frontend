@@ -1,7 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
+'use client'
+import React, { useState } from 'react';
+// import Link from 'next/link';
+import {Link, Button} from "@nextui-org/react";
 
 const MathCover: React.FC = () => {
+  const [isLoadingg, setIsLoadingg] = useState(false);
+
+  const handleClick = () => {
+    setIsLoadingg(true);
+    // Simulate a network request or other asynchronous action
+  };
   return (
     <div>
       <div className="max-w-4xl mx-auto mt-8 p-6 dark:bg-gray-900 dark:text-white bg-white text-gray-900 shadow-lg rounded-lg">
@@ -46,9 +54,12 @@ const MathCover: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-900 dark:text-white bg-white text-gray-900">
         <h1 className="text-6xl font-bold mb-8 dark:text-gray-300">Get ready</h1>
-        <Link href="/practice/questions" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-2xl">
+        {/* <Link href="/practice/questions" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-2xl">
             Start the Test
-        </Link>
+        </Link> */}
+        <Button as={Link} color="primary" href="/practice/questions" className="py-4 px-8 text-2xl" size="lg" onClick={handleClick} disabled={isLoadingg} isLoading={isLoadingg}>
+            Start the Test
+        </Button>
       </div>
     </div>
   );
