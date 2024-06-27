@@ -3,7 +3,7 @@
 import MarkdownRenderer from '../components/MarkdownRenderer';
 import calculatorIcon from '../components/calculatorIcon';
 import React, { useState, useEffect } from 'react';
-import { Button } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
 
 interface Choice {
   letter: string;
@@ -21,6 +21,31 @@ const choices: Choice[] = [
   { letter: 'C', content: 'Choice 3' },
   { letter: 'D', content: 'Choice 4' },
 ];
+
+const tutorial: string = `**Student-produced response directions**
+
+▪ If you find **more than one correct answer**, enter only one answer.
+
+▪ You can enter up to $5$ characters for a **positive** answer and up to $6$ characters 
+(including the negative sign) for a **negative** answer.
+
+▪ If your answer is a **fraction** that doesn't fit in the provided space, enter the 
+decimal equivalent.
+
+▪ If your answer is a **decimal** that doesn't fit in the provided space, enter it by 
+truncating or rounding at the fourth digit.
+
+▪ If your answer is a **mixed number** (such as $3½$), enter it as an improper fraction 
+(\`7/2\`) or its decimal equivalent (\`3.5\`).
+
+▪ Don't enter **symbols** such as a percent sign, comma, or dollar sign
+
+**Examples**
+
+![image](https://i.ibb.co/zFX0m27/image.png)
+`
+
+const referenceSheet: string = `![referenceSheet](https://www.quiz-maker.com/3012/CDN/90-4407427/0.png)`;
 
 const questions = [
   { id: 1, text: `The addition sign, represented by the symbol $$+$$, is one of the fundamental operations in mathematics. It denotes the process of combining two or more numbers to form a total or sum. For example, in the expression $$2 + 3 = 5$$, the numbers $$2$$ and $$3$$ are addends, and $$5$$ is their sum.
@@ -48,7 +73,7 @@ In more advanced mathematics, the addition sign is used in various contexts, inc
     { letter: 'B', content: '2' },
     { letter: 'C', content: '3' },
     { letter: 'D', content: '4' },
-  ]},
+  ], multipleChoice: true},
   { id: 2, text:`The age of humans, or Homo sapiens, is a fascinating topic that spans both biological evolution and cultural development. Our species is believed to have emerged around 300,000 years ago in Africa. This period marks the advent of anatomically modern humans, characterized by a larger brain, upright posture, and the capacity for complex thought and communication.
 
 Throughout history, human age has been measured in various ways. In modern society, age is typically calculated from the date of birth, with milestones like childhood, adolescence, adulthood, and old age defining different life stages. Each stage is associated with specific biological, psychological, and social changes. For instance, childhood is a time of rapid growth and learning, while old age often brings about retirement and reflection on one's life.
@@ -60,7 +85,7 @@ Overall, the concept of age encompasses both the individual journey from birth t
     { letter: 'B', content: '**2**' },
     { letter: 'C', content: '*3*' },
     { letter: 'D', content: '1' },
-  ]},
+  ], multipleChoice: true},
   { id: 3, text: `Prime numbers, represented as integers greater than $1$ that have no positive divisors other than $1$ and themselves, possess a unique allure in mathematics. They are the building blocks of all natural numbers, embodying a purity and simplicity that captivates mathematicians and enthusiasts alike.
 
 The beauty of prime numbers lies in their fundamental role in number theory and their elusive distribution among all integers. Despite their infinite nature, primes become sparser as numbers increase, leading to intriguing patterns and gaps that continue to intrigue researchers. The distribution of primes is governed by the Prime Number Theorem, which provides insights into how primes are distributed among integers.
@@ -70,12 +95,23 @@ Moreover, primes are crucial in cryptography, forming the basis of secure encryp
 The fascination with primes extends to their unpredictability and their role in uncovering deeper mathematical truths. Twin primes, pairs of primes differing by $2$ (e.g., $3$ and $5$, $11$ and $13$), and prime constellations are among the many patterns that continue to be explored.
 
 In essence, prime numbers represent both simplicity and complexity in mathematics, serving as the bedrock upon which many mathematical concepts and applications are built. Their beauty lies not only in their definition but also in the profound mysteries they continue to pose to mathematicians through the ages.
-`, question: 'What is your favorite number?' , choices:[
+`, question: 'What is your favorite prime number?' , choices:[
     { letter: 'A', content: '$998244353$' },
     { letter: 'B', content: '$1000000007$' },
     { letter: 'C', content: '$1000069$' },
     { letter: 'D', content: '$1234567891$' },
-  ]},
+  ], multipleChoice: true},
+  {
+    id: 4, text: tutorial + '\n' + referenceSheet,
+    question: `Consider the polynomial function:
+
+$$
+f(x) = x^4 - 6x^3 + 11x^2 - 6x
+$$
+
+How many x-intercepts of the graph of $f(x)$?`, choices: [],
+multipleChoice: false
+  }
 ];
 
 const markdownContent = `
@@ -154,6 +190,10 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime}) => {
     setSelectedChoice(letter);
   };
 
+  const handleIChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedChoice(event.target.value);
+  };
+
   return (
     <div>
       <div className="flex flex-col min-h-screen pb-20">
@@ -186,6 +226,11 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime}) => {
                   </div>
                 </div>
               ))}
+              {(questions[currentQuestion].multipleChoice) ? (
+                <></>
+              ) : ( <>
+                <h2 className="mb-4">Your answer is: <Input type="text" value={selectedChoice} onChange={handleIChange} /></h2>
+              </> )}
             </div>
           </div>
         </div>
