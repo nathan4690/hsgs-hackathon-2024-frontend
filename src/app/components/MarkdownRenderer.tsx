@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-// import rehypeRaw from 'rehype-raw';
+import rehypeRaw from 'rehype-raw';
 import 'katex/dist/katex.min.css';
 // import mermaid from 'mermaid';
 
@@ -23,7 +23,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
     <div className="prose prose-lg prose-invert mx-auto">
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
-        rehypePlugins={[rehypeKatex]}
+        rehypePlugins={[rehypeKatex, rehypeRaw]}
         className="dark:prose-dark"
       >
         {content}

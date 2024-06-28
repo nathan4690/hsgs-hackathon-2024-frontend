@@ -54,6 +54,30 @@ const MainSection: React.FC = () => {
           <p className="text-lg mb-2">Scroll down</p>
         </div> */}
       </section>
+
+      {/* New Section - What is the SAT */}
+      <section className="bg-blue py-20 flex flex-col md:flex-row items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 md:pr-8">
+                <img className="w-full h-auto object-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/SAT_logo_%282017%29.svg/768px-SAT_logo_%282017%29.svg.png?20230405202428" alt="Image" />
+            </div>
+            <div className="md:w-1/2 text-left">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">What is the SAT?</h2>
+                <p className="text-lg mb-4">
+                    The SAT is a standardized test widely used for college admissions in the United States.
+                    It assesses a student's readiness for college and provides colleges with a common data point
+                    that can be used to compare all applicants. The SAT consists of sections that test skills in
+                    Reading, Writing and Language, and Mathematics, with an optional Essay section.
+                </p>
+                <p className="text-lg">
+                    The SAT is designed to evaluate your knowledge and skills in areas that are essential for
+                    success in college. Preparing for the SAT can help you identify your strengths and areas for
+                    improvement, ultimately contributing to your academic and career success.
+                </p>
+            </div>
+        </div>
+      </section>
+      {/* uoc j */}
       <section className="flex flex-col md:flex-row items-center justify-center py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Left column */}
         <div className="md:w-1/2">
@@ -62,7 +86,7 @@ const MainSection: React.FC = () => {
         </div>
         {/* Right column */}
         <div className="md:w-1/2 px-6">
-          <img className="w-full h-auto object-cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/SAT_logo_%282017%29.svg/768px-SAT_logo_%282017%29.svg.png?20230405202428" alt="Image" />
+          <img className="w-full h-auto object-cover" src="https://benthalltestprep.com/wp-content/uploads/2023/11/digital-sat-graphic-520x430.png" alt="Image" />
         </div>
       </section>
       <section className="bg-gray-100 dark:bg-gray-900 py-20">
