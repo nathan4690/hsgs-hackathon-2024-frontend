@@ -4,6 +4,7 @@ import MarkdownRenderer from '../components/MarkdownRenderer';
 import calculatorIcon from '../components/calculatorIcon';
 import React, { useState, useEffect } from 'react';
 import { Button, Input } from '@nextui-org/react';
+import RedirectLogin from '../components/RedirectLogin'
 
 interface Choice {
   letter: string;
@@ -55,6 +56,7 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime, questions, s
   const [currentQuestion, setCurrentQuestion] = useState(0);  // Example current question number
   const [totalQuestions, setTotalQuestions] = useState(questions[session].length);  // Example total number of questions
   const [answers, setAnswers] = useState(questions[session].map(() => ''));
+  const [isVisible, setIsVisible] = useState(false);
 
   const [timeProgress, setTimeProgress] = useState('');
 
@@ -104,23 +106,34 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime, questions, s
     return newAnswers;
   };
 
-  const handleNextQuestion = () => {
-    const lol = currentQuestion;
+  const handleQuestion = (lol: number, target: number) => {
     const stuff = handleAnswerChange(lol, selectedChoice);
-    if (lol < questions[session].length - 1) {
-      setCurrentQuestion(lol + 1);
+    if ((target <= questions[session].length - 1) && (target >= 0)) {
+      setCurrentQuestion(target);
     }
     console.log(stuff);
-    setSelectedChoice(stuff[lol+1]);
+    setSelectedChoice(stuff[target]);
+  }
+
+  const handleNextQuestion = () => {
+    handleQuestion(currentQuestion, currentQuestion+1);
+    // const lol = currentQuestion;
+    // const stuff = handleAnswerChange(lol, selectedChoice);
+    // if (lol < questions[session].length - 1) {
+    //   setCurrentQuestion(lol + 1);
+    // }
+    // console.log(stuff);
+    // setSelectedChoice(stuff[lol+1]);
   };
 
   const handlePrevQuestion = () => {
-    const lol = currentQuestion;
-    const stuff = handleAnswerChange(lol, selectedChoice);
-    if (lol > 0) {
-      setCurrentQuestion(lol - 1);
-    }
-    setSelectedChoice(stuff[lol-1]);
+    handleQuestion(currentQuestion, currentQuestion-1);
+    // const lol = currentQuestion;
+    // const stuff = handleAnswerChange(lol, selectedChoice);
+    // if (lol > 0) {
+    //   setCurrentQuestion(lol - 1);
+    // }
+    // setSelectedChoice(stuff[lol-1]);
   };
 
   const handleChoiceClick = (letter: string) => {
@@ -131,8 +144,72 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime, questions, s
     setSelectedChoice(event.target.value);
   };
 
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
+  if((typeof window !== "undefined" ? window.localStorage.getItem('user') : false)== ''){
+    return <RedirectLogin />
+  }
+
   return (
     <div>
+      {isVisible ? (
+        <><div className="fixed inset-0 z-[100] flex items-center justify-center">
+            <div className="fixed inset-0 bg-black opacity-50"></div>
+              <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-1/3 max-w-2xl z-[100]">
+                <button
+                  className="absolute top-2 left-2 text-gray-700 hover:text-gray-900"
+                  onClick={toggleVisibility}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white text-center">Problem Navigator</h3>
+                <div className="mb-4 text-gray-700 dark:text-gray-300 text-center">
+                  <div>
+                    <span className="bg-green-500 px-2 py-1 text-white rounded">Answered</span>: You've answered these problems.
+                  </div>
+                  <div>
+                    <span className="bg-yellow-500 px-2 py-1 text-white rounded">Current</span>: This is the current problem.
+                  </div>
+                </div>
+                <div className="grid grid-cols-6 gap-1">
+                  {[...Array(totalQuestions)].map((_, index) => {
+                    const problemNumber = index + 1;
+                    const isAnswered = (answers[index] !== '');
+                    const isCurrent = index === currentQuestion;
+
+                    let bgColor = 'bg-gray-300';
+                    if (isAnswered) bgColor = 'bg-green-500';
+                    if (isCurrent) bgColor = 'bg-yellow-500';
+
+                    return (
+                      <button
+                        key={problemNumber}
+                        onClick={(obj) => handleQuestion(currentQuestion, index)}
+                        className={`w-10 h-10 flex items-center justify-center rounded-full ${bgColor} text-white`}
+                      >
+                        {problemNumber}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div></>
+      ) : (<></>)}
       <div className="flex flex-col min-h-screen pb-20">
         {/* Main Content */}
         <div className="flex flex-grow overflow-auto">
@@ -183,7 +260,7 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime, questions, s
               ← Previous
             </button> */}
             <Button color="primary" onClick={handlePrevQuestion} disabled={(currentQuestion == 0)}>← Previous</Button>
-            <button className="p-2">
+            <button className="p-2" onClick={toggleVisibility}>
               <p className="text-lg font-bold mb-2">Question {currentQuestion+1} of {totalQuestions}</p>
               <div className="bg-gray-300 dark:bg-gray-700 w-full rounded-full h-2.5">
                 <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: `${progressPercentage}%` }}></div>

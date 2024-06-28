@@ -3,8 +3,18 @@
 import React, { useState,useEffect } from 'react';
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import { useRouter } from 'next/navigation';
+import {  Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownSection,  DropdownItem,User } from "@nextui-org/react";
 
-
+const items=[
+  {
+    key: "profile",
+    label: "Profile"
+  }, 
+  {
+    key: "logout",
+    label: "Log out"
+  }
+]
 
 const Header: React.FC = () => {
   const [user, setUser] = useState<{ username: string } | null>(null);
@@ -20,6 +30,12 @@ const Header: React.FC = () => {
           setUser(null);
       }
   }, [router]);
+
+  const handleClick = () => {
+    localStorage.setItem("user","");
+    router.push("/logout");
+  }
+
   return (
     <Navbar>
       <NavbarBrand>
@@ -44,7 +60,30 @@ const Header: React.FC = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         {isUser ? (<><NavbarItem className="hidden lg:flex">
-          <Link href="/profile">Welcome, {user.username}</Link>
+          <Dropdown className='dark:dark dark:bg-gray-900 dark:text-white'>
+            <DropdownTrigger>
+              <Button variant='flat'>
+                <User name={user?.username} description="User" />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="User Actions" items={items}>
+                <DropdownItem as={Link} href="/profile"
+                  key="profile"
+                  color="default"
+                >
+                  Profile
+                </DropdownItem>
+                <DropdownItem 
+                  key="logout"
+                  color="danger"
+                  className='text-danger'
+                  onClick={ handleClick }
+                >
+                  Log out
+                </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          
         </NavbarItem></>) : (<><NavbarItem className="hidden lg:flex">
           <Link href="/login">Login</Link>
         </NavbarItem>

@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Input } from '@nextui-org/react';
 import Header from '../components/Header';
 import CalculatorLoad from '../components/CalculatorLoad';
+import RedirectLogin from '../components/RedirectLogin';
 
 interface Choice {
   letter: string;
@@ -354,6 +355,10 @@ const QuestionForm: React.FC<QuestionProps> = ({endTime, startTime}) => {
   const handleIChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedChoice(event.target.value);
   };
+
+  if((typeof window !== "undefined" ? window.localStorage.getItem('user') : false)== ''){
+    return <RedirectLogin />
+  }
 
   return (
     <div className='dark:dark'>

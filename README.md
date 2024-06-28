@@ -1,3 +1,15 @@
+# Things to do
+- **Fetch question from database**
+- Make user profile `/profile`
+- Create Math/English info page
+- Create English practice page, and navigate Math practice page
+- Create confirmation upon user submission for each section
+- Create submission handlers for
+  + Each test part
+  + The whole practice test
+- Update several display components (e.g. `Header.tsx`, `Footer.tsx`)
+- (Optional) Create local data for current practice test (in case user lost connection while testing), and allow user to continue the practice test
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
