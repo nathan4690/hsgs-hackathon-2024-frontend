@@ -50,11 +50,11 @@ const BreakTime: React.FC<BreakTimeProps> = ({ breakEndTime, sessionChange }) =>
 
   return (
     <div className="dark:dark flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800 dark:text-white">
-      <div className="p-8 bg-white dark:bg-gray-900 dark:text-white rounded-lg shadow-lg text-center">
-        <h1 className="text-5xl font-bold mb-4">Break Time</h1>
-        <p className="text-xl mb-6">Take a break in your DSAT test</p>
-        <p className="text-xl mb-6">You need to wait at least 1 minute to continue</p>
-        <div className="text-4xl font-bold mb-4">
+      <div className="dark:dark p-8 bg-white dark:bg-gray-900 dark:text-white rounded-lg shadow-lg text-center">
+        <h1 className="dark:dark text-5xl font-bold mb-4 text-black dark:text-white">Break Time</h1>
+        <p className="dark:dark text-xl mb-6 text-black dark:text-white">Take a break in your DSAT test</p>
+        <p className="dark:dark text-xl mb-6 text-black dark:text-white">You need to wait at least 1 minute to continue</p>
+        <div className="text-4xl font-bold mb-4 text-black dark:text-white">
           {timeLeft > 0 ? formatTimeLeft(timeLeft) : '00m 00s'}
         </div>
         <Button

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
+import Loading from './components/Loading';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,8 +29,8 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <NextUIProvider>
-          
-    <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">{children}</div></NextUIProvider>
+        <Loading />
+        <div className="bg-gray-100 dark:bg-gray-900 dark:text-white">{children}</div></NextUIProvider>
       </body>
     </html>
   );

@@ -10,6 +10,7 @@ import React, { useState,useEffect } from 'react';
 import BreakTime from '@/app/components/BreakTime';
 import { useRouter } from 'next/navigation';
 import { NextFetchEvent } from 'next/server';
+import Loading from '@/app/components/Loading';
 
 const tutorial: string = `**Student-produced response directions**
 
@@ -208,8 +209,9 @@ const Home: React.FC = () => {
       </Head>
 
       <Header />
+      {((session == 6) ? (<><Loading /></>) : (<></>))}
       
-      {(session != 3) ? (
+      {((session != 3) && (session != 6)) ? (
         <>
         <CountdownTimer endTime={endTime} />
         <CalculatorLoad />

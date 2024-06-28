@@ -34,7 +34,7 @@ const MathCover: React.FC = () => {
                     </div>
                 </div>
             </div>
-      <StartScreen link='/practice/problems' readyText="Digital SAT Reading & Writing Practice Test" innerText="Start the test" />
+      <StartScreen link='/practice/questions' readyText="Digital SAT Reading & Writing Practice Test" innerText="Start the test" />
     </div>
   );
 };

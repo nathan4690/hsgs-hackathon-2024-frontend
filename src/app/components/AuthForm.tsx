@@ -1,16 +1,59 @@
 'use client'
 
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import Link from 'next/link';
+import { addAccountToDatabase, loginPasswordVerify } from '../services/auth';
 
 import {Input,Card,CardBody} from "@nextui-org/react";
 import {Button, ButtonGroup} from "@nextui-org/react";
 import LoadingButton from './LoadingButton';
 
+import { useRouter } from 'next/navigation';
+
 const AuthForm: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [status, setStatus] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+          // window.alert(`You have already logged in as ${savedUser}! Please sign out to continue.`)
+          router.push("/profile");
+      } 
+  }, [router]);
+
+  const handleRegister = async () => {
+      const result = await addAccountToDatabase(username, password);
+      if(result.Status == 0) {
+        setStatus("Registered successfully");
+        router.push("/");
+      }else{
+        setStatus("Register failed, please check your credentials!");
+        setLoading(false);
+      }
+  };
+
+  const handleLogin = async () => {
+    const result = await loginPasswordVerify(username, password);
+    console.log(result);
+    if (result.Status === 0) {
+        localStorage.setItem('user', JSON.stringify({ username }));
+        setStatus('Login successful');
+        router.push('/'); // Redirect to homepage
+    } else {
+        setStatus('Login failed');
+        setLoading(false);
+    }
+};
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Add form submission logic here (e.g., login/register API calls)
+    setLoading(true);
+    if(isLogin) handleLogin();
+    else handleRegister();
   };
 
   return (
@@ -21,14 +64,14 @@ const AuthForm: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               {/* <label htmlFor="email" className="block text-gray-900 dark:text-white">Email</label> */}
-              <Input type="text" label="Username" id="username" required />
+              <Input type="text" label="Username" id="username" onChange={(e) => setUsername(e.target.value)} required />
             </div>
             <div>
                 {/* <label htmlFor="password" className="block text-gray-900 dark:text-white">Password</label> */}
-                <Input type="password" id="password" label="Password" required />
+                <Input type="password" id="password" label="Password" onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <div className="flex justify-center">
-              <Button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">{isLogin ? 'Login' : 'Register'}</Button>
+              <Button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none" isLoading={loading}>{isLogin ? 'Login' : 'Register'}</Button>
             </div>
           </form>
           <div className="mt-6 text-center text-gray-900 dark:text-white">
@@ -42,6 +85,7 @@ const AuthForm: React.FC<{ isLogin: boolean }> = ({ isLogin }) => {
             </>
           )}
         </div>
+        <p>{status}</p>
         </CardBody>
       </Card>
     </div>
